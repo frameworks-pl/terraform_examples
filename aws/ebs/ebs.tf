@@ -71,15 +71,6 @@ resource "aws_security_group" "example-ebs-sg" {
   }
 }
 
-
-# resource "aws_network_interface" "example-ebs-nic" {
-#   subnet_id = aws_subnet.example-ebs-subnet.id
-#   security_groups = [aws_security_group.example-ebs-sg.id]
-#   tags = {
-#     Name = "example-ebs-proxy-nic"
-#   }  
-# }
-
 resource "aws_ebs_volume" "example-ebs-volume" {
     availability_zone = "eu-central-1a"
     size = 1
@@ -96,11 +87,6 @@ resource "aws_instance" "example-ebs-instance" {
   key_name = "aws_tests"
   subnet_id = aws_subnet.example-ebs-subnet.id
   security_groups = [aws_security_group.example-ebs-sg.id]
-  
-#   network_interface {
-#     device_index = 0
-#     network_interface_id = aws_network_interface.example-ebs-nic.id
-#   }
 
   tags = {
     Name = "ebs-example"
