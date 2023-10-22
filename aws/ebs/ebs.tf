@@ -113,5 +113,10 @@ resource "aws_volume_attachment" "example-ebs-volume-attachement" {
   device_name = "/dev/sdh"
   volume_id   = aws_ebs_volume.example-ebs-volume.id
   instance_id = aws_instance.example-ebs-instance.id
+
+  #IMPORTANT: 1. If this is new EBS, it will have to be formatted manually (sudo mkfs -t ext4 /dev/nvme1n1) 
+  #           2. It will have to be mounted manually on instance:
+  #              sudo mkdir /mnt/example-ebs-volume
+  #              sudo mount /dev/nvme1n1 /mnt/example-ebs-volume
 }
 
