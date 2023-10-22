@@ -108,6 +108,8 @@ resource "aws_instance" "example-ebs-instance" {
 }
 
 resource "aws_volume_attachment" "example-ebs-volume-attachement" {
+
+  #Apparently this name will not be created for g2 type EBS, instead a device with name like /dev/nvme1n1 will be created
   device_name = "/dev/sdh"
   volume_id   = aws_ebs_volume.example-ebs-volume.id
   instance_id = aws_instance.example-ebs-instance.id
